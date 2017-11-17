@@ -22,7 +22,7 @@ export class EntityList extends React.Component<{entityService?: IEntityService<
                 (
                     <Row>
                         <Col md={10} xs={6}>{this.props.displayConfig.name}s</Col>
-                        <Col md={12} xs={6}>
+                        <Col md={2} xs={6}>
                             <Button bsStyle="primary" onClick={() => this.setState({showAddModal : true})}>
                                 <FontAwesome name="plus"/>
                             </Button>
