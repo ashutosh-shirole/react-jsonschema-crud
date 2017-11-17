@@ -3,6 +3,8 @@ react-jsonchema-crud
 
 A simple [React](http://facebook.github.io/react/) component to build CRUD form using [JSON schema](http://jsonschema.net/). It is based on [react-jsonschema-form](https://github.com/mozilla-services/react-jsonschema-form) and is kind of extension to it. It also depends on [react-fontawesome](https://github.com/danawoodman/react-fontawesome). Mainly to be used with [typescript](https://www.typescriptlang.org/), but can also be used without ts with some small modifications.
 
+[live demo](https://ashutosh-shirole.github.io/react-jsonschema-crud/)
+
 ## Installation
 
 Requires react-jsonschema-form and all dependencies required by it.
