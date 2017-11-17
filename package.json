@@ -1,0 +1,58 @@
+{
+  "name": "react-jsonschema-crud",
+  "version": "0.0.2",
+  "description": "A react library to display CRUD operations based on JSONSchema",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && rimraf lib && tsc && cross-env NODE_ENV=production webpack --progress --profile --colors"
+  },
+  "keywords": [
+    "jsonschema",
+    "crud",
+    "react-bootstrap",
+    "react-jsonschema-form"
+  ],
+  "author": {
+    "name": "Ashutosh Shirole",
+    "email":"ashutosh.shirole@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashutosh-shirole/react-jsonschema-crud"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^0.14.0 || ^15.2.0 || ^16.0.0",
+    "react-dom": "^0.14.0 || ^15.2.0 || ^16.0.0",
+    "react-bootstrap": "^0.31.5",
+    "react-jsonschema-form": "^1.0.0",
+    "react-fontawesome": "^1.6.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.0.19",
+    "@types/react-bootstrap": "^0.31.6",
+    "@types/react-dom": "^16.0.2",
+    "@types/react-fontawesome": "^1.6.1",
+    "@types/react-jsonschema-form": "^0.51.0",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.1",
+    "json-loader": "^0.5.7",    
+    "rimraf": "^2.6.2",
+    "ts-loader": "^3.1.1",
+    "typescript": "^2.5.2",
+    "webpack": "^1.15.0"
+  },
+  "dependencies": {
+    "react-jsonschema-form": "^1.0.0",
+    "react": "^16.1.1",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^16.1.1",
+    "react-fontawesome": "^1.6.1"
+  }
+}
