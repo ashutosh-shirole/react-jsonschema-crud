@@ -1,6 +1,6 @@
 {
   "name": "react-jsonschema-crud",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A react library to display CRUD operations based on JSONSchema",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
@@ -16,7 +16,7 @@
   ],
   "author": {
     "name": "Ashutosh Shirole",
-    "email":"ashutosh.shirole@gmail.com"
+    "email": "ashutosh.shirole@gmail.com"
   },
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^5.1.1",
-    "json-loader": "^0.5.7",    
+    "json-loader": "^0.5.7",
     "rimraf": "^2.6.2",
     "ts-loader": "^3.1.1",
     "typescript": "^2.5.2",
