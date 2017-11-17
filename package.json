@@ -1,6 +1,6 @@
 {
   "name": "react-jsonschema-crud",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A react library to display CRUD operations based on JSONSchema",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
