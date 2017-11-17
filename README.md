@@ -18,80 +18,118 @@ Following example uses [typescript](https://www.typescriptlang.org/) (that is a 
 
 ```jsx
 import * as React from 'react';
+import * as FontAwesome from 'react-fontawesome'
+import { Col, Row} from 'react-bootstrap'
 import { TodoService } from './TodoService'
 import { EntityList, ColumnConfig, DisplayConfig } from 'react-jsonschema-crud'
 
-export class TodoList extends React.Component<{TodoService?: todoService, columns: Array<string>},{}> {
-   
+class App extends React.Component {
     render() {                       
         const schema = {
             title: "Todo",
             type: "object",
             required: ["title"],
             properties: {
-                id: {type: "integer"}
+                id: {type: "integer"},
                 title: {type: "string", title: "Title", default: "A new task"},
                 status: {type: "boolean", title: "Done?", default: false}
             }
         }
+        const todoService = new TodoService()
         const columns: Array<ColumnConfig> = [
             new ColumnConfig("title"),
             new ColumnConfig("status", (status) => (<FontAwesome name={status ? "check" : "remove"}/>)),
             new ColumnConfig("check"),
         ]
-        const uiSchema = {
-            "ui:order": ["todo", "status"],
+        const uiSchema = {            
             "id": {
                 "ui:widget": "hidden"
             }
         };
         const displayConfig: DisplayConfig = new DisplayConfig("TODO",schema, uiSchema, columns)
-        return (<EntityList entityService={this.props.todoService} displayConfig={displayConfig}/>)
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <h2>react-jsonschema-crud</h2>
+                </div>
+                <div className="App-intro container jumbotron">
+                    <Row>
+                        <Col xs={8} xsOffset={2}>                    
+                            <EntityList entityService={todoService} displayConfig={displayConfig}/>
+                        </Col>
+                    </Row>
+                </div>
+            </div>            
+        )
     }
 }
+
+export default App;
 ```
 
 ```ts
 import { IEntityService, IEntity } from 'react-jsonschema-crud'
 
-export class Todo extends IEntity{
-    title: string.
+export class Todo implements IEntity{
+    id: number
+    title: string
     status: boolean
 }
 
 export class TodoService implements IEntityService<Todo>{
 
+    private todoList: Array<Todo> = [
+        {
+            id: 0,
+            title: "Create repository",
+            status: true
+        } as Todo,
+        {
+            id: 1,
+            title: "Create README",
+            status: false
+        } as Todo,
+        {
+            id: 2,
+            title: "Push",
+            status: false
+        } as Todo
+    ]
+
     add(field: Todo): Promise<any> {        
-        return new Promise((resolve,reject) => resolve("added successfully"))
+        return new Promise((resolve,reject) => {
+            let max = this.todoList.reduce( (a, b) => a.id > b.id ? a : b ).id || 0
+            field.id = max + 1
+            this.todoList.push(field)
+            resolve("added successfully")
+        })
     }
 
     update(field: Todo): Promise<any> {
-        return new Promise((resolve,reject) => resolve("updated successfully"))
+        return new Promise((resolve,reject) => {
+            let todo = this.todoList.find((t) => t.id == field.id )
+            if(todo) {
+                todo.title = field.title
+                todo.status = field.status
+            }
+            resolve("updated successfully")
+        })
     }
 
     fetchAll(): Promise<Array<Todo>> {
-        return new Promise((resolve,reject) => resolve(getDummy()))
+        return new Promise((resolve,reject) => resolve(this.getDummy()))
     }        
 
     getDummy(): Array<Todo> {
-        return [
-            {
-                title: "Create repository",
-                status: true
-            } as Todo,
-            {
-                title: "Create repository",
-                status: false
-            } as Todo,
-            {
-                title: "Push",
-                status: false
-            } as Todo
-        ]
+        return this.todoList;
     }
 
     delete(field: Todo): Promise<any> {
-        return new Promise((resolve,reject) => resolve("deleted successfully"))
+        return new Promise((resolve,reject) => {
+            let idx = this.todoList.findIndex(t => t.id == field.id)
+            this.todoList.splice(idx, 1)
+            resolve("deleted successfully")
+        })
     }
 }
 
